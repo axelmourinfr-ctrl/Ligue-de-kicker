@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ligue Baby-foot</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>⚽ Ligue de Baby-foot</h1>
+  </header>
+
+  <main>
+    <!-- Ajouter joueur -->
+    <section class="card">
+      <h2>Ajouter un joueur</h2>
+      <div class="row">
+        <input id="newPlayerName" placeholder="Nom du joueur" />
+        <button class="btn" onclick="addPlayer()">Ajouter</button>
+      </div>
+      <p class="hint">Elo initial : 1000</p>
+    </section>
+
+    <!-- Match form -->
+    <section class="card">
+      <h2>Enregistrer un match</h2>
+
+      <div class="row">
+        <label for="mode">Mode</label>
+        <select id="mode" onchange="renderMatchForm()">
+          <option value="1v1">1 vs 1</option>
+          <option value="2v2">2 vs 2</option>
+        </select>
+      </div>
+
+      <div id="matchForm"></div>
+
+      <div class="row">
+        <button class="btn primary" onclick="submitMatch()">Valider le match</button>
+        <button class="btn ghost" onclick="clearMatchForm()">Effacer</button>
+      </div>
+      <p class="hint">Astuce : si un nom n'existe pas encore, il sera créé automatiquement (Elo 1000).</p>
+    </section>
+
+    <!-- Outils ligue -->
+    <section class="card">
+      <h2>Gestion de la ligue</h2>
+      <div class="row wrap">
+        <button class="btn warning" onclick="newSeason()">Nouvelle saison (reset stats)</button>
+      </div>
+
+      <div class="divider"></div>
+
+      <h3>Attribuer un bonus Elo</h3>
+      <div class="row wrap">
+        <input id="bonusName" placeholder="Nom du joueur" />
+        <input id="bonusAmount" type="number" step="1" placeholder="Points Elo (+/-)" />
+        <button class="btn" onclick="applyBonus()">Appliquer</button>
+      </div>
+      <p class="hint">Idée de règles : Vainqueur tournoi +50, Meilleur buteur +20…</p>
+    </section>
+
+    <!-- Classement -->
+    <section class="card">
+      <h2>Classement individuel</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Joueur</th>
+              <th>Elo</th>
+              <th>V</th>
+              <th>D</th>
+              <th>Buts</th>
+              <th>Passes</th>
+              <th>Arrêts</th>
+              <th>Tirs ratés</th>
+            </tr>
+          </thead>
+          <tbody id="rankingBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Baby-foot League • Données stockées localement (navigateur)</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
